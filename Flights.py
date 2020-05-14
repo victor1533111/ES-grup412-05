@@ -1,5 +1,6 @@
 class Flights:
 
     def __init__(self, viajeros):
-        self.viajeros=viajeros
+        if(viajeros>0):
+            self.viajeros=viajeros
         pass
