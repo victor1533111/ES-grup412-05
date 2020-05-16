@@ -1,8 +1,7 @@
 import unittest
 import PaymentData
-from unittest import mock
 
-class TestMockPayment(unittest.TestCase):
+class TestPaymentV1(unittest.TestCase):
     
     def test_valid_data(self)
         payment = PaymentData("Pepe", "4323 1234 5478 9123", "123", "VISA", "321")
