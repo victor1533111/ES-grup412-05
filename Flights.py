@@ -114,3 +114,13 @@ class Flights:
 
 
         pass
+
+    def ConfirmarVuelos(self, usuario, vuelos) -> bool:
+        bool confirmar = false
+        i=0
+        while confirmar != true and i<3:
+            confirmar = confirm_reserve(usuario, vuelos)
+            i=i+1
+        return confirmar
+        
+        pass
