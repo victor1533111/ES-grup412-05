@@ -56,7 +56,14 @@ class Flights:
         
         NuevosVuelos.append([self.destinos[-1],origen])
         self.vuelos=NuevosVuelos
-        print("Falta actualizar precio")
+        
+        new_precio=precio_destino
+        old_precios=self.precio_vuelos
+        old_precios.append(new_precio)
+        for i in old_precios:
+            self.precio_total+=i
+        self.precio_vuelos=old_precios
+
 
         pass
 
