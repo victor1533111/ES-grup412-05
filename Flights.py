@@ -69,6 +69,15 @@ class Flights:
 
 
     def BorrarDestino(self,destinoB):
+        #lo hago al inicio pa poder usar self.destinos original
+        old_precios=self.precios_vuelos
+        new_precios=[]
+        for l,x in enumerate(self.destinos):
+            if x != destinoB:
+                new_precios.append(old_precios[l])
+            else:
+                self.precio_vuelos=self.precio_vuelos-old_precios[l]
+        self.precios_vuelos=new_precios
 
         NuevosDestinos=[]
         for dest in self.destinos:
@@ -93,6 +102,8 @@ class Flights:
         
         NuevosVuelos.append([self.destinos[-1],origen])
         self.vuelos=NuevosVuelos
-        print("Falta actualizar precio")
+        
+        
+
 
         pass
