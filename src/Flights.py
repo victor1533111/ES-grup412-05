@@ -116,13 +116,14 @@ class Flights:
 
         pass
 
-    def ConfirmarVuelos(self, usuario, vuelos) -> bool:
-        confirmar = False
+    def ConfirmarVuelos(self):
+        confirmar = True
         i=0
         
+
         while confirmar != True and i<3:
-            confirmar = vuelo.confirm_reserve(usuario,vuelos)
+            confirmar =sky.Skyscanner.confirm_reserve(self.usuario,self)
             i=i+1
         return confirmar
         
-        pass
+        
