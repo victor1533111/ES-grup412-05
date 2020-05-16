@@ -1,4 +1,4 @@
-import .
+import User
 import PaymentData
 def main():
 
