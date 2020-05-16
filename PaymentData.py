@@ -9,4 +9,8 @@ class PaymentData:
         pass
     
     def validar_datos(self):
+        if self.method != "VISA" or self.method != "MASTERCARD":
+            return False
+        if self.import_ < 0:
+            return False
         return True
