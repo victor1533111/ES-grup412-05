@@ -9,8 +9,21 @@ class PaymentData:
         pass
     
     def validar_datos(self):
+
         if self.method != "VISA" or self.method != "MASTERCARD":
             return False
+        
+        # Negative Imports
         if self.import_ < 0:
             return False
+        
+        # Empty elements
+        if not self.titular or not self.num_tarjeta or not self.cvc or not self.method or not self.import_:
+            return False
+        
+        # Non-string elements
+        if not all(isinstance(element, str) for element in [self.titular, self.num_tarjeta, self.cvc, self.method, self.import_]):
+            return False
+    
         return True
+
