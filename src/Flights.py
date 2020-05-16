@@ -27,7 +27,7 @@ class Flights:
                         i=i+1
                 self.vuelos.append([self.destinos[-1],origen])
                 self.precio_vuelos=[]
-                self.precio_vuelos.append(precio_vuelo)
+                self.precio_vuelos.append(precio_vuelos)
                 for pre in precio_vuelos:
                     self.precio_total+=pre
                 self.precio_total=self.precio_total*viajeros
@@ -77,7 +77,7 @@ class Flights:
 
     def BorrarDestino(self,destinoB):
         #lo hago al inicio pa poder usar self.destinos original
-        old_precios=self.precios_vuelos
+        old_precios=self.precio_vuelos
         new_precios=[]
         for l,x in enumerate(self.destinos):
             if x != destinoB:
@@ -119,7 +119,7 @@ class Flights:
     def ConfirmarVuelos(self, usuario, vuelos) -> bool:
         confirmar = False
         i=0
-        sky()
+        
         while confirmar != True and i<3:
             confirmar = vuelo.confirm_reserve(usuario,vuelos)
             i=i+1
