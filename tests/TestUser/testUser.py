@@ -2,9 +2,9 @@ from ../.. import Flights
 from ../.. import Users
 
 
-
-def test_gestiopassatgers(numero, user):
-    if numero == Flights.viajeros:
-        return True
-    if Flights.usuario == user:
-        return True
+class testUser:
+    def test_gestiopassatgers(self):
+        usuario = User("Ruben","4712458T","Calle Vic","645548572","rubenjibo@gmail.com")
+        numero = 7
+        assert numero == Flights.viajeros
+        assert user == Flights.usuario

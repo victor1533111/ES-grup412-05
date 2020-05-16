@@ -1,4 +1,5 @@
 import User
+import Skyscanner as sky
 class Flights:
 
     def __init__(self, viajeros,user,origen,destinos,precio_vuelos):
@@ -116,10 +117,11 @@ class Flights:
         pass
 
     def ConfirmarVuelos(self, usuario, vuelos) -> bool:
-        bool confirmar = false
+        confirmar = False
         i=0
-        while confirmar != true and i<3:
-            confirmar = confirm_reserve(usuario, vuelos)
+        sky()
+        while confirmar != True and i<3:
+            confirmar = vuelo.confirm_reserve(usuario,vuelos)
             i=i+1
         return confirmar
         
