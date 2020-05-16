@@ -13,14 +13,16 @@ def main():
         user = User.user(nom="pepe",DNI="39887788V", direccion="calle juan carlos I", tel="673666888",email="pepeilosglobos@gmail.com")
         payment = PaymentData.payment(titular="Pepe", num_tarjeta="2313353", cvc="321", method="VISA")
         
-        print("validamos datos")
-        if(PaymentData.payment.validar_datos(payment) != True):
-            print("datos incorrectos vuelve a rellenar")
-
+        
         if(corr):
             corr=True
         else:
             print("datos incorrectos vuelve a rellenar")
+
+
+    print("validamos datos")
+    if(PaymentData.payment.validar_datos(payment) != True):
+        print("datos incorrectos vuelve a rellenar")
 
 if __name__== "__main__":
     main()
