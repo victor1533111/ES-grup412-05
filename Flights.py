@@ -4,6 +4,7 @@ class Flights:
         if(viajeros<1):
             print("El numero de viajeros es incorrecto, debe ser superior a uno.")
         else:
+            self.viajeros=viajeros
             if(len(destinos)==0):
                 self.destinos=[]
                 self.vuelos=[]
