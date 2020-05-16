@@ -8,7 +8,7 @@ class TestMock1(unittest.TestCase):
      
     @mock.patch('src.Flights')
     def test_confirmarvuelos(self,mock_vuelos):
-        self.assertTrue(mock.Flights.confirmarvuelos()
-        mock_vuelos.confirmarvuelos().return_value = FALSE
-        self.assertFalse(mock.Flights.confirmarvuelos( usuario, vuelos))
+        self.assertTrue(mock_vuelos.confirmarvuelos(mock_vuelos.usuario,mock_vuelos.self))
+        mock_vuelos.confirmarvuelos(mock_vuelos.usuario,mock_vuelos.self).return_value = False
+        self.assertFalse(mock_vuelos.confirmarvuelos(mock_vuelos.usuario,mock_vuelos.self))
         
