@@ -26,6 +26,7 @@ class Flights:
                 self.precio_vuelos.append(precio_vuelo)
                 for pre in precio_vuelos:
                     self.precio_total+=pre
+                self.precio_total=self.precio_total*viajeros
 
 
         pass
@@ -64,6 +65,7 @@ class Flights:
         for i in old_precios:
             self.precio_total+=i
         self.precio_vuelos=old_precios
+        self.precio_total=self.precio_total*self.viajeros
 
 
         pass
@@ -77,8 +79,9 @@ class Flights:
             if x != destinoB:
                 new_precios.append(old_precios[l])
             else:
-                self.precio_vuelos=self.precio_vuelos-old_precios[l]
+                self.precio_vuelos=self.precio_vuelos-(old_precios[l]*self.viajeros)
         self.precios_vuelos=new_precios
+
 
         NuevosDestinos=[]
         for dest in self.destinos:
