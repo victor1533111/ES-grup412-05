@@ -1,9 +1,12 @@
+import User
 class Flights:
 
-    def __init__(self, viajeros,origen,destinos, precio_vuelo):
+    def __init__(self, viajeros,user,origen,destinos,precio_vuelos):
+        
         if(viajeros<1):
             print("El numero de viajeros es incorrecto, debe ser superior a uno.")
         else:
+            self.usuario = user
             self.viajeros=viajeros
             if(len(destinos)==0):
                 self.destinos=[]
