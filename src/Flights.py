@@ -124,6 +124,7 @@ class Flights:
         while confirmar != True and i<3:
             confirmar =sky.Skyscanner.confirm_reserve(self.usuario,self)
             i=i+1
+            h
         return confirmar
         
         
