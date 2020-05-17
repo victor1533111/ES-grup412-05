@@ -28,20 +28,10 @@ class testFlights(unittest.TestCase):
         
         self.assertTrue(vuelo.ConfirmarVuelos(), "Reserva hecha")
 
-    ''' Dado un viaje con múltiples destinos y más de un viajero, cuando se quitan
-        destinos, la lista de destinos es la esperada '''
-    def test_viajeMultiple_Destinos(self):
-        usuario= User("Ruben","4712458T","Calle Vic","645548572","rubenjibo@gmail.com")
-        numviajeros=5
-        vuelo = Flights(numviajeros,usuario,"Valencia","Barcelona",200)
-        vuelo.AñadirDestino("Pamplona", 1)
-        vuelo.BorrarDestino("Pamplona")
-        expected = ["Valencia", "Barcelona"]
-        self.assertListEqual(vuelo.destinos, expected)
 
     ''' Dado un viaje con múltiples destinos y más de un viajero, cuando se quitan
         destinos, la lista de vuelos/destinos es la esperada  '''
-    def test_viajeMultiple_Vuelos(self):
+    def test_viajeMultiple_Vuelos_y_Vuelos(self):
         usuario= User("Ruben","4712458T","Calle Vic","645548572","rubenjibo@gmail.com")
         numviajeros=5
         vuelo = Flights(numviajeros,usuario,"Valencia","Barcelona",200)
@@ -52,11 +42,11 @@ class testFlights(unittest.TestCase):
         self.assertListEqual(vuelo.destinos, expected)
 
     
-    def test_AñadirDestino(self):
+    def test_AnadirDestino(self):
             usuario= User("Ruben","4712458T","Calle Vic","645548572","rubenjibo@gmail.com")
             destinos=["Valencia","Madrid"]
-            Flights(5,usuario,"Barcelona",destinos,200)
-            Flights.AñadirDestino("Amsterdam",2,10)
+            vuelos = Flights(5,usuario,"Barcelona",destinos,200)
+            vuelos.AñadirDestino("Amsterdam",2,10)
             DestinosEsperados=["Valencia","Amsterdam","Madrid"]
             VuelosEsperados=[["Barcelona","Valencia"],["Valencia","Amsterdam"],["Amsterdam","Madrid"],["Madrid","Barcelona"]]
             precioEsperado=4000
@@ -67,8 +57,8 @@ class testFlights(unittest.TestCase):
     def test_BorrarDestino(self):
             usuario= User("Ruben","4712458T","Calle Vic","645548572","rubenjibo@gmail.com")
             destinos=["Valencia","Amsterdam","Madrid"]
-            Flights(5,usuario,"Barcelona",destinos,200)
-            Flights.BorrarDestino("Amsterdam")
+            vuelos = Flights(5,usuario,"Barcelona",destinos,200)
+            vuelos.BorrarDestino("Amsterdam")
             DestinosEsperados=["Valencia","Madrid"]
             VuelosEsperados=[["Barcelona","Valencia"],["Valencia","Madrid"],["Madrid","Barcelona"]]
             precioEsperado=3000
