@@ -29,6 +29,14 @@ class testFlights(unittest.TestCase):
         self.viaje = Flights(numviajeros,self.usuario)
         assert self.viaje.vuelos==0
 
+    def test_precio_actualizado(self):
+        self.usuario = User("Ruben", "4712458T", "Calle Vic",
+                            "645548572", "rubenjibo@gmail.com")
+        numviajeros = 2
+        self.viaje = Flights(numviajeros,self.usuario,origen='BCN',destinos=['BER','VEN','ENG'],precio_vuelos=2000)
+        self.viaje.AñadirDestino('AZJ',4)
+        assert self.viaje.precio_total == numviajeros*2000*4
+
     def test_confirmarvuelos(self):
         self.usuario = User("Ruben", "4712458T", "Calle Vic","645548572", "rubenjibo@gmail.com")
         numviajeros = 5
