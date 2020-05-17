@@ -21,6 +21,7 @@ def main():
             titular = input("Titular de la tarjeta")
             tarjeta = input("Numero de la tarjeta de credito")
             codigo_seguridad = input("Codigo de seguridad de la tarjeta de credito")
+            
 
 
 
