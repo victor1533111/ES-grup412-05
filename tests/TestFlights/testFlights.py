@@ -51,14 +51,6 @@ class testFlights(unittest.TestCase):
         self.assertListEqual(vuelo.vuelos, expected)
         self.assertListEqual(vuelo.destinos, expected)
 
-    def test_gestiopassatgers(self):
-        self.usuario= User("Ruben","4712458T","Calle Vic","645548572","rubenjibo@gmail.com")
-        numeroviajeros=5
-        destinos=["Valencia","Madrid"]
-        self.vuelo = Flights(numeroviajeros,self.usuario,destinos,"Barcelona",200)
-
-        assert numeroviajeros == self.vuelo.viajeros
-        assert self.usuario == self.vuelo.usuario
     
     def test_AñadirDestino(self):
             usuario= User("Ruben","4712458T","Calle Vic","645548572","rubenjibo@gmail.com")
