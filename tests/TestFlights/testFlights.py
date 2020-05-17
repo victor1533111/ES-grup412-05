@@ -3,7 +3,7 @@ from src.User import User
 
 
 
-class testUser():
+class testFlights():
 
     def test_gestiopassatgers(self):
         self.usuario= User("Ruben","4712458T","Calle Vic","645548572","rubenjibo@gmail.com")
@@ -13,3 +13,5 @@ class testUser():
         assert numviajeros == self.vuelo.viajeros
         assert self.usuario == self.vuelo.usuario
         
+    
+    

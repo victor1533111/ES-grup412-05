@@ -13,5 +13,12 @@ def main():
         email = input("Email")
         usuario = User(Nombre,DNI,direccion,telefono,email)
 
+        datoscorrectos= User.comprobar_datos(usuario)
+
+        if datoscorrectos == False:
+            print("Los datos introducidos son incorrectos")
+
+
+
 if __name__== "__main__":
     main()
