@@ -38,7 +38,7 @@ class Flights:
    
 
 
-    def AñadirDestino(self,Ndestino,posicion, precio_destino):
+    def AñadirDestino(self,Ndestino,posicion):
         NuevosDestinos=[]
         i=1
         for dest in self.destinos:
