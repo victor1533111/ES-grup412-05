@@ -6,4 +6,6 @@ class User:
         self.direccion = direccion
         self.telf = telf
         self.email = email
+
+      
         pass
