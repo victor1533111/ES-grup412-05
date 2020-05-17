@@ -9,7 +9,7 @@ class testFlights(unittest.TestCase):
                             "645548572", "rubenjibo@gmail.com")
         numviajeros = 5
         self.vuelo = Flights(numviajeros, self.usuario,
-                             "Valencia", "Barcelona", 200)
+                             "Valencia", ["Barcelona"], 200)
 
         assert numviajeros == self.vuelo.viajeros
         assert self.usuario == self.vuelo.usuario
