@@ -57,6 +57,18 @@ class testFlights(unittest.TestCase):
         self.assertListEqual(vuelo.vuelos, expected)
         self.assertListEqual(vuelo.destinos, expected)
 
+        
+    ''' Dado un viaje con múltiples destinos y más de un viajero, cuando se quitan
+        destinos, la lista de vuelos/destinos es la esperada  '''
+    def test_viajeMultiple_Precio(self):
+        usuario= User("Ruben","4712458T","Calle Vic","645548572","rubenjibo@gmail.com")
+        numviajeros=5
+        vuelo = Flights(numviajeros,usuario,"Valencia","Barcelona",200)
+        vuelo.AñadirDestino("Pamplona", 1)
+        vuelo.BorrarDestino("Pamplona")
+        expected = ["Valencia", "Barcelona"]
+        precio_Esperado = 400
+        assert precioEsperado == vuelos.precio_total
     
     def test_AnadirDestino(self):
             usuario= User("Ruben","4712458T","Calle Vic","645548572","rubenjibo@gmail.com")
