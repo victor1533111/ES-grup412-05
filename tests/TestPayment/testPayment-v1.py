@@ -1,32 +1,28 @@
 import unittest
-import PaymentData
+from src.PaymentData import PaymentData
 
 class TestPaymentV1(unittest.TestCase):
     
-    def test_valid_data(self)
+    def test_valid_data(self):
         payment = PaymentData("Pepe", "4323 1234 5478 9123", "123", "VISA", "321")
         valid = PaymentData.validar_datos(payment)
-        assert valid == True
+        assert valid == True, "Invalid Data"
 
-    def test_invalid_method(self)
+    def test_invalid_method(self):
         payment = PaymentData("Pepe", "4323 1234 5478 9123", "123", "visa", "321")
         valid = PaymentData.validar_datos(payment)
-        assert valid == False
+        assert valid == False, "Invalid Method"
 
-    def test_invalid_import(self)
+    def test_invalid_import(self):
         payment = PaymentData("Pepe", "4323 1234 5478 9123", "123", "VISA", "-321")
         valid = PaymentData.validar_datos(payment)
-        assert valid == False
+        assert valid == False, "Invalid Negative Import"
 
-    def test_invalid_types(self)
-        payment = PaymentData("Pepe", "4323 1234 5478 9123", "123", "VISA", 321)
-        valid = PaymentData.validar_datos(payment)
-        assert valid == False
-
-    def test_empty_data(self)
+    def test_empty_data(self):
         payment = PaymentData("", "", "", "", "")
         valid = PaymentData.validar_datos(payment)
-        assert valid == False
-    
-    pass
+        assert valid == False, "Invalid data, data is empty"
+
+if __name__ == "__main__":
+    unittest.main()
 
