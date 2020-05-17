@@ -2,6 +2,9 @@ import User
 import Skyscanner as sky
 class Flights:
 
+    def CalcularPrecio(self):
+        return self.precio_vuelos*self.viajeros*len(self.vuelos)
+
     def __init__(self, viajeros,user,origen,destinos,precio_vuelos):
         
         if(viajeros<1):
@@ -13,6 +16,7 @@ class Flights:
                 self.destinos=[]
                 self.vuelos=[]
                 self.precio_total=0
+                self.precio_vuelos=precio_vuelos
             else:
                 self.destinos=destinos
                 list(self.destinos)
@@ -26,14 +30,12 @@ class Flights:
 
                         i=i+1
                 self.vuelos.append([self.destinos[-1],origen])
-                self.precio_vuelos=[]
-                self.precio_vuelos.append(precio_vuelos)
-                for pre in precio_vuelos:
-                    self.precio_total+=pre
-                self.precio_total=self.precio_total*viajeros
+                self.precio_total=self.CalcularPrecio()
+                
 
 
         pass
+   
 
 
     def AñadirDestino(self,Ndestino,posicion, precio_destino):
@@ -63,13 +65,7 @@ class Flights:
         NuevosVuelos.append([self.destinos[-1],origen])
         self.vuelos=NuevosVuelos
         
-        new_precio=precio_destino
-        old_precios=self.precio_vuelos
-        old_precios.append(new_precio)
-        for i in old_precios:
-            self.precio_total+=i
-        self.precio_vuelos=old_precios
-        self.precio_total=self.precio_total*self.viajeros
+        self.precio_total=self.CalcularPrecio()
 
 
         pass
@@ -110,19 +106,13 @@ class Flights:
         
         NuevosVuelos.append([self.destinos[-1],origen])
         self.vuelos=NuevosVuelos
-        
-        
+        self.precio_total=self.CalcularPrecio()        
 
 
         pass
 
     def ConfirmarVuelos(self):
-        confirmar = True
-        i=0
-        
-        while confirmar != True and i<3:
-            confirmar =sky.Skyscanner.confirm_reserve(self,self.usuario,self)
-            i=i+1
+        confirmar =sky.Skyscanner.confirm_reserve(self,self.usuario,self)        
         return confirmar
         
         
