@@ -5,7 +5,7 @@ class Flights:
     def CalcularPrecio(self):
         return self.precio_vuelos*self.viajeros*len(self.vuelos)
 
-    def __init__(self, viajeros,user,origen='',destinos=[],precio_vuelos=0):
+    def __init__(self, viajeros,user,origen,destinos,precio_vuelos):
         
         if(viajeros<1):
             print("El numero de viajeros es incorrecto, debe ser superior a uno.")
@@ -40,7 +40,7 @@ class Flights:
 
     def AñadirDestino(self,Ndestino,posicion, precio_destino):
         NuevosDestinos=[]
-        i=0
+        i=1
         for dest in self.destinos:
             if i==posicion:
                 NuevosDestinos.append(Ndestino)
@@ -72,16 +72,7 @@ class Flights:
 
 
     def BorrarDestino(self,destinoB):
-        #lo hago al inicio pa poder usar self.destinos original
-        old_precios=self.precio_vuelos
-        new_precios=[]
-        for l,x in enumerate(self.destinos):
-            if x != destinoB:
-                new_precios.append(old_precios[l])
-            else:
-                self.precio_vuelos=self.precio_vuelos-(old_precios[l]*self.viajeros)
-        self.precios_vuelos=new_precios
-
+        
 
         NuevosDestinos=[]
         for dest in self.destinos:
@@ -112,8 +103,7 @@ class Flights:
         pass
 
     def ConfirmarVuelos(self):
-        vuelos = sky.Skyscanner()
-        confirmar =vuelos.confirm_reserve(self.usuario,self)        
+        confirmar =sky.Skyscanner.confirm_reserve(self,self.usuario,self)        
         return confirmar
         
         
