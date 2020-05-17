@@ -46,13 +46,13 @@ class testFlights(unittest.TestCase):
             usuario= User("Ruben","4712458T","Calle Vic","645548572","rubenjibo@gmail.com")
             destinos=["Valencia","Madrid"]
             vuelos = Flights(5,usuario,"Barcelona",destinos,200)
-            vuelos.AñadirDestino("Amsterdam",2,10)
+            vuelos.AñadirDestino("Amsterdam",2)
             DestinosEsperados=["Valencia","Amsterdam","Madrid"]
             VuelosEsperados=[["Barcelona","Valencia"],["Valencia","Amsterdam"],["Amsterdam","Madrid"],["Madrid","Barcelona"]]
             precioEsperado=4000
-            assert precioEsperado == Flights.precio_total
-            assert DestinosEsperados == Flights.destinos
-            assert VuelosEsperados == Flights.vuelos
+            assert precioEsperado == vuelos.precio_total
+            assert DestinosEsperados == vuelos.destinos
+            assert VuelosEsperados == vuelos.vuelos
 
     def test_BorrarDestino(self):
             usuario= User("Ruben","4712458T","Calle Vic","645548572","rubenjibo@gmail.com")
@@ -62,9 +62,9 @@ class testFlights(unittest.TestCase):
             DestinosEsperados=["Valencia","Madrid"]
             VuelosEsperados=[["Barcelona","Valencia"],["Valencia","Madrid"],["Madrid","Barcelona"]]
             precioEsperado=3000
-            assert precioEsperado == Flights.precio_total
-            assert DestinosEsperados == Flights.destinos
-            assert VuelosEsperados == Flights.vuelos
+            assert precioEsperado == vuelos.precio_total
+            assert DestinosEsperados == vuelos.destinos
+            assert VuelosEsperados == vuelos.vuelos
     
 
 if __name__ == "__main__":
