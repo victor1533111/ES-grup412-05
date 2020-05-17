@@ -24,18 +24,10 @@ class testFlights(unittest.TestCase):
     def test_confirmarvuelos(self):
         self.usuario = User("Ruben", "4712458T", "Calle Vic","645548572", "rubenjibo@gmail.com")
         numviajeros = 5
-        self.vuelo = Flights(numviajeros, self.usuario,"Valencia", "Barcelona", 200)
+        vuelo = Flights(numviajeros, self.usuario,"Valencia", "Barcelona", 200)
         
-        assertTrue(ConfirmarVuelos(), "Reserva hecha")
+        self.assertTrue(vuelo.ConfirmarVuelos(), "Reserva hecha")
 
-    def test_gestiopassatgers(self):
-        usuario = User("Ruben","4712458T","Calle Vic","645548572","rubenjibo@gmail.com")
-        numviajeros=5
-        vuelo = Flights(numviajeros,usuario,"Valencia","Barcelona",200)
-
-        assert numviajeros == vuelo.viajeros
-        assert usuario == vuelo.usuario
-    
     ''' Dado un viaje con múltiples destinos y más de un viajero, cuando se quitan
         destinos, la lista de destinos es la esperada '''
     def test_viajeMultiple_Destinos(self):
