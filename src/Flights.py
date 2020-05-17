@@ -5,7 +5,7 @@ class Flights:
     def CalcularPrecio(self):
         return self.precio_vuelos*self.viajeros*len(self.vuelos)
 
-    def __init__(self, viajeros,user,origen,destinos,precio_vuelos):
+    def __init__(self, viajeros,user,origen='',destinos=[],precio_vuelos=0):
         
         if(viajeros<1):
             print("El numero de viajeros es incorrecto, debe ser superior a uno.")
