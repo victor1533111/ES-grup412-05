@@ -1,28 +1,24 @@
-import User
-import PaymentData
+from src.User import User 
+from src.PaymentData import PaymentData
+from src.Hotels import Hotels
 def main():
 
-    viaje= User.Trip(num_pass=2, origen='BCN', flight_list=[('BCN','BER'),('BER','VEN'),('VEN','BCN')],car_list=['Buggati Veyron','Lamborghini Aventador'],fecha_in='10/06/2021',fecha_f='30/06/2021',precio=3500)
+    respuesta = input("Deseas realizar el pago de la reserva ? S/N")
+    if respuesta == "S":
+        print("Proporcioname los siguientes datos:")
+        Nombre = input("Nombre Completo")
+        DNI = input("DNI")
+        direccion = input("Direccion")
+        telefono = input("Telefono")
+        email = input("Email")
+        usuario = User(Nombre,DNI,direccion,telefono,email)
+
+        datoscorrectos= User.comprobar_datos(usuario)
+
+        if datoscorrectos == False:
+            print("Los datos introducidos son incorrectos")
 
 
-    #flujo principal
-    print('El usuario pulsa el boton de "Realizar pago"')
-    corr==False
-    while(corr==False):
-        print("El usuario introduce sus datos para el pago")
-        user = User.user(nom="pepe",DNI="39887788V", direccion="calle juan carlos I", tel="673666888",email="pepeilosglobos@gmail.com")
-        payment = PaymentData.payment(titular="Pepe", num_tarjeta="2313353", cvc="321", method="VISA")
-        
-        
-        if(corr):
-            corr=True
-        else:
-            print("datos incorrectos vuelve a rellenar")
-
-
-    print("validamos datos")
-    if(PaymentData.payment.validar_datos(payment) != True):
-        print("datos incorrectos vuelve a rellenar")
 
 if __name__== "__main__":
     main()

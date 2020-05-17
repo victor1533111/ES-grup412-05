@@ -12,8 +12,8 @@ class User:
         self.viajeros=numpass
         self.origen=origen
         self.lista_vuelos=listavuelos
-        self.hotel_list
-        self.car_list
+        self.hotel_list=hotel_list
+        self.car_list=car_list
         self.fecha_inicio=fecha_in
         self.fecha_final=fecha_f
         self.precio_total=precio_tot

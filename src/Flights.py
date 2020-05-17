@@ -112,7 +112,8 @@ class Flights:
         pass
 
     def ConfirmarVuelos(self):
-        confirmar =sky.Skyscanner.confirm_reserve(self,self.usuario,self)        
+        vuelos = sky.Skyscanner()
+        confirmar =vuelos.confirm_reserve(self.usuario,self)        
         return confirmar
         
         

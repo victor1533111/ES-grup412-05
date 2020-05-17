@@ -1,8 +1,7 @@
 from src.Flights import Flights
 from src.User import User
 
-
-class testUser():
+class testFlights():
 
     def test_gestiopassatgers(self):
         self.usuario = User("Ruben", "4712458T", "Calle Vic",
