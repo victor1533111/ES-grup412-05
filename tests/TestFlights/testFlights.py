@@ -22,6 +22,13 @@ class testFlights(unittest.TestCase):
         self.viaje = Flights(numviajeros,self.usuario)
         assert self.viaje.vuelos==[]
 
+    def test_precio0(self):
+        self.usuario = User("Ruben", "4712458T", "Calle Vic",
+                            "645548572", "rubenjibo@gmail.com")
+        numviajeros = 1
+        self.viaje = Flights(numviajeros,self.usuario)
+        assert self.viaje.vuelos==0
+
     def test_confirmarvuelos(self):
         self.usuario = User("Ruben", "4712458T", "Calle Vic","645548572", "rubenjibo@gmail.com")
         numviajeros = 5
