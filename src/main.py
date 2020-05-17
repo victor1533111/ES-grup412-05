@@ -13,10 +13,14 @@ def main():
         email = input("Email")
         usuario = User(Nombre,DNI,direccion,telefono,email)
 
-        datoscorrectos= User.comprobar_datos(usuario)
+        datoscorrectos= usuario.comprobar_datos()
 
         if datoscorrectos == False:
             print("Los datos introducidos son incorrectos")
+            print("Proporcioname los siguientes datos:")
+            titular = input("Titular de la tarjeta")
+            tarjeta = input("Numero de la tarjeta de credito")
+            codigo_seguridad = input("Codigo de seguridad de la tarjeta de credito")
 
 
 
