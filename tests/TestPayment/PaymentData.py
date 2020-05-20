@@ -9,7 +9,8 @@ class PaymentData:
         pass
     
     def validar_datos(self):
-
+        
+        # Not valid method (uppercase)
         if self.method != "VISA" and self.method != "MASTERCARD":
             return False
         
