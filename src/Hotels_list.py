@@ -3,6 +3,7 @@ import User
 import Hotels
 
 class Hotels_list:
+    # Se le pasa una lista de hoteles
     
     def __init__(self, listHotels: Hotels):
         self.listHotels = listHotels
