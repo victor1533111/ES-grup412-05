@@ -1,4 +1,5 @@
 import unittest
+from unittest import mock
 import sys
 sys.path.append('../../src/')
 import PaymentData
@@ -39,6 +40,15 @@ class TestPaymentV1(unittest.TestCase):
         payment = PaymentData.PaymentData("Pepe", "4323 1234 5478 9123", "123", "VISA", "321")
         bank_reply = payment.Gestionar_Errores_Pago(usuario, banco)
         assert bank_reply == True, "The payment is denied when it should be accepted"
+    
+    def test_gestionar_metodo_invalido(self):
+        with mock.patch('Bank.Bank') as MockBank:
+            MockBank.do_payment.return_value = False
+            usuario = User.User("Pepe", "2051923A", "C/ Bolets", "93333333", "jibo@gmail.com")
+            payment = PaymentData.PaymentData("Pepe", "4323 1234 5478 9123", "123", "VISA", "321")
+            bank_reply = payment.Gestionar_Errores_Pago(usuario, MockBank)
+            assert bank_reply == False, "The payment is accepted when it should be denied"
+        
 
 if __name__ == "__main__":
     unittest.main()
