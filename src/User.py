@@ -18,4 +18,18 @@ class User:
         self.fecha_final=fecha_f
         self.precio_total=precio_tot
 
-        pass
+    def comprobar_datos(self):
+        
+        if type(self.name) !=str:
+            return False
+        if type(self.DNI) !=str:
+            return False
+        if type(self.direccion) !=str:
+            return False
+        if type(self.telf) !=int:
+            return False
+        if type(self.email) !=str:
+            return False
+
+        return True
+      

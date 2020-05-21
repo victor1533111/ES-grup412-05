@@ -1,3 +1,5 @@
+from src.Bank import Bank
+from src.User import User
 class PaymentData:
 
     def __init__(self, titular, num_tarjeta, cvc, method, import_):
@@ -26,4 +28,13 @@ class PaymentData:
             return False
     
         return True
-
+    
+    def Gestionar_Errores_Pago(self,usuario,banco):
+        
+        if banco.do_payment(usuario,self) == False:
+            print("No se ha podido realizar el pago")
+            return False
+        else:
+            print("El pago se ha realizado correctamente")
+            return True
+    

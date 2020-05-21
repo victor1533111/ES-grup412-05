@@ -1,5 +1,5 @@
-import User
-import Cars
+from src.User import User
+from src.Cars import Cars
 
 
 class Rentalcars():
