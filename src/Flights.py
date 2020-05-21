@@ -1,5 +1,6 @@
-from src.User import User
-from src.Skyscanner import Skyscanner
+import User
+import Skyscanner
+
 class Flights:
 
     def CalcularPrecio(self):
