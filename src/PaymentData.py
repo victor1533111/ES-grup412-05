@@ -1,5 +1,6 @@
-from src.Bank import Bank
-from src.User import User
+import Bank
+import User
+
 class PaymentData:
 
     def __init__(self, titular, num_tarjeta, cvc, method, import_):
@@ -12,7 +13,7 @@ class PaymentData:
     
     def validar_datos(self):
 
-        if self.method != "VISA" or self.method != "MASTERCARD":
+        if self.method != "VISA" and self.method != "MASTERCARD":
             return False
         
         # Negative Imports
@@ -29,9 +30,11 @@ class PaymentData:
     
         return True
     
-    def Gestionar_Errores_Pago(self,usuario,banco):
+    def Gestionar_Errores_Pago(self, usuario: User, banco: Bank):
         
-        if banco.do_payment(usuario,self) == False:
+        reply = banco.do_payment(usuario,self)
+        
+        if reply == False:
             print("No se ha podido realizar el pago")
             return False
         else:
