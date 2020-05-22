@@ -12,25 +12,23 @@ class testFlights(unittest.TestCase):
     def test_gestiopassatgers(self):
         usuario = User.User("Ruben", "4712458T", "Calle Vic", "645548572", "rubenjibo@gmail.com")
         numviajeros = 5
-        vuelo = []
-        vuelo.append(Flights.Flights("1234", "Barcelona", "Valencia", numviajeros, 20))
-        lista_vuelos = Flights_list.Flights_list(vuelo, usuario)
-        assert numviajeros == vuelo[0].num_passatgers
+        lista_vuelos = Flights_list.Flights_list(None, usuario)
+        lista_vuelos.AñadirDestino("1234", "Barcelona", "Valencia", numviajeros, 20, 0)
+        assert numviajeros == lista_vuelos.listVuelos[0].num_passatgers
         assert usuario == lista_vuelos.usuario
 
     def test_lista_destinos_vacia(self):
         usuario = User.User("Ruben", "4712458T", "Calle Vic", "645548572", "rubenjibo@gmail.com")
         numviajeros = 1
-        vuelo = []
-        vuelo.append(Flights.Flights("1234", "Barcelona", None, numviajeros, 20))
-        lista_vuelos = Flights_list.Flights_list(vuelo, usuario)
-        assert vuelo[0].destinacio == None
+        lista_vuelos = Flights_list.Flights_list(None, usuario)
+        lista_vuelos.AñadirDestino("1234", "Valencia", None, numviajeros, 20, 0)
+        assert lista_vuelos.listVuelos[0].destinacio == None
     
     def test_lista_vuelos_vacia(self):
         usuario = User.User("Ruben", "4712458T", "Calle Vic", "645548572", "rubenjibo@gmail.com")
         numviajeros = 1
         vuelo = []
-        vuelo.append(Flights.Flights("1234", "Barcelona", None, numviajeros, 20))
+        vuelo.append(Flights.Flights("1234", None, None, numviajeros, 20))
         lista_vuelos = Flights_list.Flights_list(vuelo, usuario)
         assert lista_vuelos.listVuelos == []
 
