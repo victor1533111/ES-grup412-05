@@ -19,14 +19,13 @@ class Flights:
         pass
    
 
-    def ConfirmarVuelo(self, usuario: User):
-        vuelo = Skyscanner()
+    def ConfirmarVuelo(self, usuario: User, vuelo: Skyscanner):
         confirmar = vuelo.confirm_reserve(usuario, self)
         return confirmar
         
-    def Gestionar_Errores_Reserva(self, usuario: User):
+    def Gestionar_Errores_Reserva(self, usuario: User, vuelo: Skyscanner):
         
-        reply = self.ConfirmarVuelos(usuario)
+        reply = self.ConfirmarVuelos(usuario, vuelo)
         
         if reply == False:
             print("No se ha podido realizar la reserva")

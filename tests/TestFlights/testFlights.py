@@ -101,7 +101,7 @@ class testFlights(unittest.TestCase):
             MockSky.confirm_reserve.return_value = False
             usuario = User.User("Pepe", "2051923A", "C/ Bolets", "93333333", "jibo@gmail.com")
             vuelo = Flights.Flights(5,usuario,"Valencia","Barcelona",200)
-            reserva_reply = vuelo.Gestionar_Errores_Reserva(usuario)
+            reserva_reply = vuelo.Gestionar_Errores_Reserva(usuario, MockSky)
             assert reserva_reply == False, "The reserve is accepted when it should be denied"
 
 if __name__ == "__main__":
