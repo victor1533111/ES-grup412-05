@@ -17,20 +17,4 @@ class Flights:
             self.num_passatgers = num_passatgers
             self.precio_vuelo = precio_vuelo
         pass
-   
-
-    def ConfirmarVuelo(self, usuario: User, vuelo: Skyscanner):
-        confirmar = vuelo.confirm_reserve(usuario, self)
-        return confirmar
-        
-    def Gestionar_Errores_Reserva(self, usuario: User, vuelo: Skyscanner):
-        
-        reply = self.ConfirmarVuelos(usuario, vuelo)
-        
-        if reply == False:
-            print("No se ha podido realizar la reserva")
-            return False
-        else:
-            print("Se ha realizado la reserva satisfactoriamente")
-            return True
-        
+    
