@@ -8,6 +8,7 @@ class Cars_List:
 
     def __init__(self, listcars: Cars):
         self.listcars = listcars
+        self.calcular_precioTotal()
         pass
 
     def calcular_precioTotal(self):
@@ -24,4 +25,11 @@ class Cars_List:
                 self.listcars.insert(i,coche)
                 self.calcular_precioTotal()
         
+        pass
+    
+    def eliminar_vehiculo(self, flight_l:Flights_list, ciudad, precio_por_dia, modelo, codigo, lugar_recogida, dias):
+        for i,x in enumerate(flight_l.listVuelos):
+            if(ciudad==x.destinacio):
+                self.listcars.pop(i)
+                self.calcular_precioTotal()
         pass
