@@ -9,6 +9,6 @@ class Hotels:
         self.num_huespedes=num_huespedes
         self.num_habitacions=num_habitacions
         self.duracion_reserva=duracion_reserva
-        self.precio
+        self.precio=precio
         self.precio_Total = self.precio * self.num_habitacions * self.duracion_reserva
         pass
