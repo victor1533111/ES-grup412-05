@@ -1,5 +1,7 @@
-from src.User import User
-from src.Cars import Cars
+import sys
+sys.path.append('../../src/')
+import User
+import Cars
 
 
 class Rentalcars():

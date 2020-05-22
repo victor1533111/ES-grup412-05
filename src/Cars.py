@@ -1,6 +1,7 @@
-from src.User import User
-from src.Rentalcars import Rentalcars
-from src.Flights import Flights
+import sys
+sys.path.append('../../src/')
+import User
+import Rentalcars
 
 class Cars:
 
