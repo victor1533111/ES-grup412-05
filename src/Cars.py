@@ -11,10 +11,10 @@ class Cars:
 
         pass
 
-    def confirmar_reserva_vehiculos(self,user):
+    def confirmar_reserva_vehiculos(self,usuario:User,rentalcars: Rentalcars):
         
-        rental = Rentalcars()
-        if rental.confirm_reserve(user,self) == False:
+        
+        if rentalcars.confirm_reserve(usuario,self) == False:
             print("No se ha podido realizar la reserva de los vehiculos")
             return False
         else:
