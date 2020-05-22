@@ -96,6 +96,13 @@ class testFlights(unittest.TestCase):
         assert DestinosEsperados == vuelos.destinos
         assert VuelosEsperados == vuelos.vuelos
 
+    def test_gestionar_reserva(self):
+        with mock.patch('Skyscanner.Skyscanner') as MockSky:
+            MockSky.confirm_reserve.return_value = False
+            usuario = User.User("Pepe", "2051923A", "C/ Bolets", "93333333", "jibo@gmail.com")
+            vuelo = Flights.Flights(5,usuario,"Valencia","Barcelona",200)
+            reserva_reply = vuelo.Gestionar_Errores_Reserva(usuario)
+            assert reserva_reply == False, "The reserve is accepted when it should be denied"
 
 if __name__ == "__main__":
     unittest.main()
