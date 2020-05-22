@@ -1,5 +1,7 @@
 from src.User import User
 from src.Rentalcars import Rentalcars
+from src.Flights import Flights
+
 class Cars:
 
     def __init__(self,codigo,marca,lugar_recojida,duaracion_reserva):
@@ -20,3 +22,13 @@ class Cars:
         else:
             print("Se ha realizado la reserva de los vehiculos correctamente")
             return True
+        
+        pass
+        
+    def añadir_vehiculo(self, flight:Flights, ciudad, precio_vehiculo):
+        if ciudad is not flight.destinos:
+            print("no existente en el viaje")
+
+            
+                
+        
