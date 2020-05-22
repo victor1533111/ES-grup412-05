@@ -3,19 +3,19 @@ from unittest import mock
 import sys
 sys.path.append('../../src/')
 import Flights
+import Flights_list
 import User
 
 class testFlights(unittest.TestCase):
 
     def test_gestiopassatgers(self):
-        self.usuario = User.User("Ruben", "4712458T", "Calle Vic",
-                            "645548572", "rubenjibo@gmail.com")
+        usuario = User.User("Ruben", "4712458T", "Calle Vic", "645548572", "rubenjibo@gmail.com")
         numviajeros = 5
-        self.vuelo = Flights.Flights(numviajeros, self.usuario,
-                             "Valencia", ["Barcelona"], 200)
-
-        assert numviajeros == self.vuelo.viajeros
-        assert self.usuario == self.vuelo.usuario
+        vuelo = []
+        vuelo.append(Flights.Flights("1234", "Barcelona", "Valencia", numviajeros, 20))
+        lista_vuelos = Flights_list.Flights_list(vuelo, usuario)
+        assert numviajeros == vuelo.num_passatgers
+        assert usuario == lista_vuelos.usuario
 
     def test_listavacia(self):
         self.usuario = User.User("Ruben", "4712458T", "Calle Vic",
