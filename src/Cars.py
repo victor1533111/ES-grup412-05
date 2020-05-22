@@ -9,7 +9,7 @@ class Cars:
         self.codigo=codigo
         self.marca = marca
         self.lugar_recojida=lugar_recojida
-        self.duracion_reserva =duaracion_reserva
+        self.duracion_reserva = duaracion_reserva
         self.precio_total = precio * duaracion_reserva
 
         pass
@@ -26,10 +26,11 @@ class Cars:
         
         pass
         
-    def añadir_vehiculo(self, flight:Flights, ciudad, precio_por_dia=0, modelo=""):
+    def añadir_vehiculo(self, flight:Flights, ciudad, precio_por_dia=0, modelo="", codigo=""):
         if ciudad is not flight.destinos:
             print("no existente en el viaje")
-        
+        else:
+            
             
                 
         
