@@ -2,13 +2,13 @@ from src.User import User
 from src.Rentalcars import Rentalcars
 class Cars:
 
-    def __init__(self,codigo,marca,precio,lugar_recojida,duaracion_reserva):
+    def __init__(self,codigo,marca,precio,lugar_recojida,duracion_reserva):
 
         self.codigo=codigo
         self.marca = marca
         self.lugar_recojida=lugar_recojida
-        self.duracion_reserva =duaracion_reserva
-        self.precio_total = precio * duaracion_reserva
+        self.duracion_reserva =duracion_reserva
+        self.precio_total = precio * duracion_reserva
 
         pass
 
