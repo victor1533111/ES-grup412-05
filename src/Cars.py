@@ -28,11 +28,7 @@ class Cars:
         
         pass
         
-    def añadir_vehiculo(self, flight:Flights, ciudad, precio_por_dia=0, modelo="", codigo=""):
-        if ciudad is not flight.destinos:
-            print("no existente en el viaje")
-        else:
-            
+  
             
                 
         
