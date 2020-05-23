@@ -26,7 +26,7 @@ class User:
             return False
         if type(self.direccion) !=str:
             return False
-        if type(self.telf) !=int:
+        if type(self.telf) !=str:
             return False
         if type(self.email) !=str:
             return False
