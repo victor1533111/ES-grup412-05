@@ -57,7 +57,33 @@ def main():
                 if errores_pago == False:
                     validar_datos_tarjeta = False
             
+    numviajeros = 5
+        
+    # Añadir Vuelos
     
+    lista_vuelos = Flights_list.Flights_list(None, usuario)
+    lista_vuelos.AñadirDestino("1234", "Barcelona", "Valencia", numviajeros, 20, 0)
+    lista_vuelos.AñadirDestino("3214", "Valencia", "Madrid", numviajeros, 50, 1)
+        
+    # Añadir Hoteles
+    
+    numhabitaciones = 3
+    numdias = 3
+    precioHabitacion = 15
+    
+    lista_hoteles = Hotels_list.Hotels_list(None)
+    lista_hoteles.AñadirHotel("1000", "Cristian", numviajeros, numhabitaciones, numdias, precioHabitacion, 0)    
+    lista_hoteles.AñadirHotel("2000", "Cristian", numviajeros, numhabitaciones, numdias, precioHabitacion, 1)
+    
+    # Añadir Coches
+    
+    lista_cars = Cars_List.Cars_List(None)
+    lista_cars.añadir_vehiculo(lista_vuelos, "Valencia", 15, "Seat Ibiza", "2321", "Valencia", 3)    
+    
+    fecha_in = "03/2/2019"
+    fecha_f = "09/2/2019"
+    usuario.Trip(lista_vuelos, lista_hoteles, lista_cars, fecha_in, fecha_f)
+    precio = usuario.calcularPrecioT()
     
 
 
