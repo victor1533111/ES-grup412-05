@@ -1,3 +1,7 @@
+import Cars_List
+import Hotels_list
+import Flights_list
+
 class User:
 
     def __init__(self, name, DNI, direccion, telf, email):
@@ -16,7 +20,7 @@ class User:
         self.car_list=car_list
         self.fecha_inicio=fecha_in
         self.fecha_final=fecha_f
-        self.precio_total=precio_tot
+        self.precio_total=self.Calcular_Precio_reserva()
 
     def comprobar_datos(self):
         
@@ -32,4 +36,11 @@ class User:
             return False
 
         return True
-      
+    
+    def Calcular_Precio_reserva(self):
+         
+        precio= self.lista_vuelos.calcular_precioTotal()
+        precio=+ self.hotel_list.calcular_precioTotal()
+        precio=+ self.car_list.calcular_precioTotal()
+        
+        return precio

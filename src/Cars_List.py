@@ -1,7 +1,6 @@
 import sys
 sys.path.append('../../src/')
 import Flights_list
-import Cars_List
 import Cars
 
 class Cars_List:
