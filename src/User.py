@@ -1,6 +1,8 @@
-import Cars_List
-import Hotels_list
+import sys
+sys.path.append('../../src/')
 import Flights_list
+import Hotels_list
+import Cars_List
 
 class User:
 
@@ -12,16 +14,19 @@ class User:
         self.email = email
         pass
 
-    def Trip(self, numpass, origen, listavuelos, hotel_list, car_list, fecha_in, fecha_f, precio_tot):
-        self.viajeros=numpass
-        self.origen=origen
-        self.lista_vuelos=listavuelos
-        self.hotel_list=hotel_list
-        self.car_list=car_list
-        self.fecha_inicio=fecha_in
-        self.fecha_final=fecha_f
-        self.precio_total=self.Calcular_Precio_reserva()
-
+    def Trip(self, lista_vuelos: Flights_list, hotel_list: Hotels_list, car_list: Cars_List, fecha_in, fecha_f):
+        self.lista_vuelos = lista_vuelos
+        self.hotel_list = hotel_list
+        self.car_list = car_list
+        self.fecha_inicio = fecha_in
+        self.fecha_final = fecha_f
+    
+    def calcularPrecioT(self):
+        precioVuelos = self.lista_vuelos.calcular_precioTotal()
+        precioHoteles = self.hotel_list.calcular_precioTotal()
+        precioCars = self.car_list.calcular_precioTotal()
+        return(precioVuelos + precioHoteles + precioCars)
+    
     def comprobar_datos(self):
         
         if type(self.name) !=str:
@@ -36,11 +41,4 @@ class User:
             return False
 
         return True
-    
-    def Calcular_Precio_reserva(self):
-         
-        precio= self.lista_vuelos.calcular_precioTotal()
-        precio=+ self.hotel_list.calcular_precioTotal()
-        precio=+ self.car_list.calcular_precioTotal()
-        
-        return precio
+      
