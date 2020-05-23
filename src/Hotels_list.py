@@ -24,3 +24,12 @@ class Hotels_list:
     
     def cancelar_cargo(self):
         print("Se cancela el cargo debido a que no se ha podido realizar la reserva.")
+    
+    def AñadirHotel(self, codigo, nombre, num_huespedes, num_habitacions, duracion_reserva, precio, posicion_hotel):
+        hotel = Hotels.Hotels(codigo, nombre, num_huespedes, num_habitacions, duracion_reserva, precio)
+        self.listHotels.insert(posicion_hotel, hotel)
+        pass
+    
+    def BorrarHotel(self, posicion_hotel):
+        self.listHotels.pop(posicion_hotel)
+        pass
