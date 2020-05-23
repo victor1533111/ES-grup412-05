@@ -6,6 +6,9 @@ class Hotels_list:
     # Se le pasa una lista de hoteles
     
     def __init__(self, listHotels: Hotels):
+        if listHotels == None:
+            self.listHotels = []
+            return
         self.listHotels = listHotels
         pass
     
