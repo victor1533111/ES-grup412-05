@@ -20,6 +20,7 @@ class User:
         self.car_list = car_list
         self.fecha_inicio = fecha_in
         self.fecha_final = fecha_f
+        self.Precio_total=self.calcularPrecioT()
     
     def calcularPrecioT(self):
         precioVuelos = self.lista_vuelos.calcular_precioTotal()

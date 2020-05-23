@@ -17,6 +17,7 @@ class Cars_List:
         for car in self.listcars:
             precio_T += car.precio_total
         self.precio_coches=precio_T
+        return precio_T
         pass
     
     def añadir_vehiculo(self, flight_l:Flights_list, ciudad, precio_por_dia, modelo, codigo, lugar_recogida, dias):    
