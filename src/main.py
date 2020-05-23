@@ -96,11 +96,11 @@ def main():
                     validar_datos_tarjeta = False
   
          
-    lista_vuelos.confirmar_reserva(usuario,api_Skyscanner)
+    lista_vuelos.confirmar_Todos(api_Skyscanner)
     if lista_cars.listcars != None:
-        lista_cars.confirmar_reserva(usuario,api_Rentalcars)
+        lista_cars.confirmar_reserva(api_Rentalcars)
     if lista_hoteles.listHotels != None:
-        lista_hoteles.confirmar_reserva(usuario,api_Booking)
+        lista_hoteles.confirmar_reserva(api_Booking)
     print("Se ha enviado la factura ")  
     
     return 0
