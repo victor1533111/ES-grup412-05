@@ -6,10 +6,11 @@ import Cars
 class Cars_List:
 
     def __init__(self, listcars: Cars):
+        if listcars == None:
+            self.listcars = []
+            return
         self.listcars = listcars
-        self.calcular_precioTotal()
         pass
-
     def calcular_precioTotal(self):
         precio_T = 0
         for car in self.listcars:
