@@ -12,9 +12,10 @@ class Hotels_list:
         self.listHotels = listHotels
         pass
     
-    def confirmar_reserva_Booking(self, usuario: User):
+    def confirmar_reserva_Booking(self, usuario: User, booking: Booking):
         for hotel in self.listHotels:
-            ret = Booking.Booking.confirm_reserve(usuario, hotel) 
+            book = booking
+            ret = book.confirm_reserve(usuario, hotel) 
             if ret == False:
                 return False
         return True
