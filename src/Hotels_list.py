@@ -12,14 +12,6 @@ class Hotels_list:
         self.listHotels = listHotels
         pass
     
-    def confirmar_reserva_Booking(self, usuario: User, booking: Booking):
-        for hotel in self.listHotels:
-            book = booking
-            ret = book.confirm_reserve(usuario, hotel) 
-            if ret == False:
-                return False
-        return True
-    
     def calcular_precioTotal(self):
         precio_T = 0
         for hotel in self.listHotels:
