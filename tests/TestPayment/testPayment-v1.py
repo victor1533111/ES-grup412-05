@@ -97,7 +97,7 @@ class TestPaymentV1(unittest.TestCase):
         numdias2=3
         precioHabitacion1=30
         precioHabitacion2=20        
-        cars = []
+        
         
         lista_vuelos = Flights_list.Flights_list(None, usuario)
         lista_vuelos.AñadirDestino("3214", "Valencia", "Madrid", numviajeros, precioVuelo, 0)    
@@ -108,11 +108,12 @@ class TestPaymentV1(unittest.TestCase):
         lista_hoteles.AñadirHotel("2000", "Cristian", numviajeros, numhabitaciones, numdias2, precioHabitacion2, 1)
                 
         lista_cars = Cars_List.Cars_List(None)
-        lista_cars.añadir_vehiculo(lista_vuelos, "Valencia", 15, "Seat Ibiza", "2321", "Valencia", 3) 
+        lista_cars.añadir_vehiculo(lista_vuelos, "Madrid", 15, "Seat Ibiza", "2321", "Valencia", 3) 
+        
         
         usuario.Trip(lista_vuelos, lista_hoteles, lista_cars, "1/1/2021", "5/1/2021")
         
-        assert 1415 == usuario.calcularPrecioT()
+        assert 1285 == usuario.calcularPrecioT()
 
 if __name__ == "__main__":
     unittest.main()
