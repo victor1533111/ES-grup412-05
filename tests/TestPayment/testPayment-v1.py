@@ -1,58 +1,58 @@
-import unittest
-from unittest import mock
-import sys
-sys.path.append('../../src/')
-import PaymentData
-import User
 import Bank
+import User
 
+class PaymentData:
 
-class TestPaymentV1(unittest.TestCase):
+    def __init__(self, titular, num_tarjeta, cvc, method, import_):
+        self.titular = titular
+        self.num_tarjeta = num_tarjeta
+        self.cvc = cvc
+        self.method = method
+        self.import_ = import_
+        pass
     
-    def test_valid_data(self):
-        payment = PaymentData.PaymentData("Pepe", "4323 1234 5478 9123", "123", "VISA", "321")
-        valid = PaymentData.PaymentData.validar_datos(payment)
-        assert valid == True, "Invalid Data"
+    def validar_datos(self):
 
-    def test_invalid_method(self):
-        payment = PaymentData.PaymentData("Pepe", "4323 1234 5478 9123", "123", "visa", "321")
-        valid = PaymentData.PaymentData.validar_datos(payment)
-        assert valid == False, "Invalid Method, check uppercase (VISA or MASTERCARD are the only valid options"
-
-    def test_invalid_import(self):
-        payment = PaymentData.PaymentData("Pepe", "4323 1234 5478 9123", "123", "VISA", "-321")
-        valid = PaymentData.PaymentData.validar_datos(payment)
-        assert valid == False, "Invalid Negative Import"
-
-    def test_empty_data(self):
-        payment = PaymentData.PaymentData("", "", "", "", "")
-        valid = PaymentData.PaymentData.validar_datos(payment)
-        assert valid == False, "Invalid data, data is empty"
+        if self.method != "VISA" and self.method != "MASTERCARD":
+            return False
         
-    def test_empty_types(self):
-        payment = PaymentData.PaymentData("Pepe", "4323 1234 5478 9123", 123, "VISA", 321)
-        valid = PaymentData.PaymentData.validar_datos(payment)
-        assert valid == False, "Invalid data types"
+        # Negative Imports
+        if int(self.import_) < 0:
+            return False
+        
+        # Empty elements
+        if not self.titular or not self.num_tarjeta or not self.cvc or not self.method or not self.import_:
+            return False
+        
+        # Non-string elements
+        if not all(isinstance(element, str) for element in [self.titular, self.num_tarjeta, self.cvc, self.method, self.import_]):
+            return False
     
-    def test_gestionar_metodo_valido(self):
-        usuario = User.User("Pepe", "2051923A", "C/ Bolets", "93333333", "jibo@gmail.com")
-        banco = Bank.Bank()
-        payment = PaymentData.PaymentData("Pepe", "4323 1234 5478 9123", "123", "VISA", "321")
-        bank_reply = payment.Gestionar_Errores_Pago(usuario, banco)
-        assert bank_reply == True, "The payment is denied when it should be accepted"
+        return True
     
-    def test_gestionar_metodo_invalido(self):
-        with mock.patch('Bank.Bank') as MockBank:
-            MockBank.do_payment.return_value = False
-            usuario = User.User("Pepe", "2051923A", "C/ Bolets", "93333333", "jibo@gmail.com")
-            payment = PaymentData.PaymentData("Pepe", "4323 1234 5478 9123", "123", "VISA", "321")
-            bank_reply = payment.Gestionar_Errores_Pago(usuario, MockBank)
-            assert bank_reply == False, "The payment is accepted when it should be denied"
+    def confirmar_Pago(self, usuario: User, banco: Bank):
+        reply = banco.do_payment(usuario,self)
+        if reply == False:
+            print("No se ha podido realizar el pago")
+            return False
+        else:
+            print("El pago se ha realizado correctamente")
+            return True
     
-    '''Dado un viaje con múltiples destinos y más de un viajero, cuando se produce un
-    error al realizar el pago, se reintenta realizar el pago'''
-
-if __name__ == "__main__":
-    unittest.main()
-
-
+    def confirmar_Pago_con_Reintento(self, usuario: User, banco: Bank):
+        # Si retorna Falso reintenta el pago 3 veces
+        intento = 0; bankReplies=[]
+        while(intento < 3):
+            reply = banco.do_payment(usuario,self)
+            bankReplies.append(reply[intento])
+            if bankReplies[intento] == False:
+                print("No se ha podido realizar el pago en el intento " + str(intento))
+            else:
+                print("El pago se ha realizado correctamente en el intento " + str(intento))
+                intento += 1
+                return True, intento
+            intento += 1
+        print("No se ha podido realizar el pago, se ha intentado " + str(intento) + " veces.")
+        return False, intento
+        
+   
