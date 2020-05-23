@@ -8,7 +8,6 @@ import Bank
 import Hotels_list
 import Flights_list
 import Cars_List
-import Cars
 
 
 class TestPaymentV1(unittest.TestCase):
@@ -87,7 +86,7 @@ class TestPaymentV1(unittest.TestCase):
             bank_reply = payment.confirmar_Pago(usuario, MockBank)
             
             assert bank_reply == False, "The payment is accepted when it should be denied"
-    """
+    
     def test_Precio_User(self):
         usuario = User.User("Ruben", "4712458T", "Calle Vic","645548572", "rubenjibo@gmail.com")
         
@@ -108,13 +107,12 @@ class TestPaymentV1(unittest.TestCase):
         lista_hoteles.AñadirHotel("1000", "Cristian", numviajeros, numhabitaciones, numdias1, precioHabitacion1, 0)    
         lista_hoteles.AñadirHotel("2000", "Cristian", numviajeros, numhabitaciones, numdias2, precioHabitacion2, 1)
                 
-        cars.append(Cars.Cars(123,"Seat",50,"GranVia",numdias1))
-        cars.append(Cars.Cars(777,"Honda",25,"Calle illo",numdias2))
-        lista_Cars=Cars_List.Cars_List(cars) 
+        lista_cars = Cars_List.Cars_List(None)
+        lista_cars.añadir_vehiculo(lista_vuelos, "Valencia", 15, "Seat Ibiza", "2321", "Valencia", 3) 
         
-        usuario.Trip(lista_vuelos, lista_hoteles, lista_Cars, "1/1/2021", "5/1/2021")
+        usuario.Trip(lista_vuelos, lista_hoteles, lista_cars, "1/1/2021", "5/1/2021")
         
-        assert 1415 ==usuario.Precio_total
+        assert 1415 == usuario.calcularPrecioT()
 
 if __name__ == "__main__":
     unittest.main()
