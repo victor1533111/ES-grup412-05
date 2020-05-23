@@ -101,7 +101,7 @@ def main():
         lista_cars.confirmar_reserva(usuario, api_Rentalcars)
     if lista_hoteles.listHotels != None:
         lista_hoteles.confirmar_Todos(usuario, api_Booking)
-    print("Se ha enviado la factura ")  
+    print("Se ha enviado la factura correctamente ")  
     
     return 0
 
