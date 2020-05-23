@@ -84,7 +84,7 @@ class testHotels(unittest.TestCase):
         
         book_API = Booking.Booking()
         
-        self.assertTrue(lista_hoteles.confirmar_reserva_Booking(usuario, book_API))
+        self.assertTrue(lista_hoteles.confirmar_Todos(usuario, book_API))
         
     '''Dado un viaje con múltiples destinos y más de un viajero, cuando se produce
     error al confirmar los alojamientos, se reporta que la acción no se ha podido
@@ -100,8 +100,49 @@ class testHotels(unittest.TestCase):
             lista_hoteles.AñadirHotel("1000", "Cristian", numviajeros, numhabitaciones, numdias, precioHabitacion, 0)    
             lista_hoteles.AñadirHotel("2000", "Cristian", numviajeros, numhabitaciones, numdias, precioHabitacion, 1)
              
-            reply = lista_hoteles.confirmar_reserva_Booking(usuario, MockBooking)
+            reply = lista_hoteles.confirmar_Todos(usuario, MockBooking)
             assert reply == False, "The payment is accepted when it should be denied"
+    
+    ''' V5 - Dado un viaje con múltiples destinos y más de un viajero, cuando se produce un
+    error al confirmar los alojamientos, se reintenta realizar la confirmación'''
+    def test_confirmarfallido_reintento(self):
+        with mock.patch('Booking.Booking') as MockBook:
+            MockBook.confirm_reserve.return_value = [True, True, True]
+            usuario = User.User("Ruben", "4712458T", "Calle Vic","645548572", "rubenjibo@gmail.com")
+            numviajeros = 2; numhabitaciones = 1; numdias = 3; precioHabitacion = 15
+            lista_hoteles = Hotels_list.Hotels_list(None)
+            lista_hoteles.AñadirHotel("1000", "Cristian", numviajeros, numhabitaciones, numdias, precioHabitacion, 0)    
+            lista_hoteles.AñadirHotel("2000", "Cristian", numviajeros, numhabitaciones, numdias, precioHabitacion, 1)
+            api_reply = lista_hoteles.confirmar_Todos(usuario, MockBook)
+            assert api_reply == True, "The payment is accepted when it should be denied"
+    
+    ''' V5 - Dado un viaje con múltiples destinos y más de un viajero, cuando la
+    confirmación de los alojamientos se realiza correctamente en un reintento, se
+    reporta que la acción se ha realizado correctamente'''
+    def test_confirmarfallido_reintentoCorrectos(self):
+        with mock.patch('Booking.Booking') as MockBook:
+            MockBook.confirm_reserve.return_value = [False, True, True]
+            usuario = User.User("Ruben", "4712458T", "Calle Vic","645548572", "rubenjibo@gmail.com")
+            numviajeros = 2; numhabitaciones = 1; numdias = 3; precioHabitacion = 15
+            lista_hoteles = Hotels_list.Hotels_list(None)
+            lista_hoteles.AñadirHotel("1000", "Cristian", numviajeros, numhabitaciones, numdias, precioHabitacion, 0)    
+            lista_hoteles.AñadirHotel("2000", "Cristian", numviajeros, numhabitaciones, numdias, precioHabitacion, 1)
+            api_reply = lista_hoteles.confirmar_Todos(usuario, MockBook)
+            assert api_reply == True, "The payment is accepted when it should be denied"
+            
+    ''' V5 - Dado un viaje con múltiples destinos y más de un viajero, cuando se produce un
+    error al confirmar los alojamientos, y se ha superado el número máximo de
+    reintentos, se reporta que la acción no se ha podido realizar'''
+    def test_confirmarfallido_reintentoIncorrectos(self):
+        with mock.patch('Booking.Booking') as MockBook:
+            MockBook.confirm_reserve.return_value = [False, False, False]
+            usuario = User.User("Ruben", "4712458T", "Calle Vic","645548572", "rubenjibo@gmail.com")
+            numviajeros = 2; numhabitaciones = 1; numdias = 3; precioHabitacion = 15
+            lista_hoteles = Hotels_list.Hotels_list(None)
+            lista_hoteles.AñadirHotel("1000", "Cristian", numviajeros, numhabitaciones, numdias, precioHabitacion, 0)    
+            lista_hoteles.AñadirHotel("2000", "Cristian", numviajeros, numhabitaciones, numdias, precioHabitacion, 1)
+            api_reply = lista_hoteles.confirmar_Todos(usuario, MockBook)
+            assert api_reply == False, "The payment is accepted when it should be denied"
 
 
 if __name__ == "__main__":

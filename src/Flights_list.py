@@ -41,11 +41,25 @@ class Flights_list:
         self.listVuelos.pop(posicion_del_vuelo)
         pass
     
-    def Confirmar_todos(self, skyscanner: Skyscanner):
+    def confirmar_Todos(self, skyscanner: Skyscanner):
+        # Retorna Falso reintenta el pago 3 veces y todas son False
         for vuelo in self.listVuelos:
-            sky = skyscanner
-            ret = sky.confirm_reserve(self.usuario, vuelo)
-            if ret == False:
+            intento = 0; ApiReplies=[]; Api = False
+            while(intento < 3):
+                sky = skyscanner
+                ret = sky.confirm_reserve(self.usuario, sky)
+                if type(ret) != list:
+                    ApiReplies = ret
+                else:
+                    ApiReplies = ret[intento]
+                if ApiReplies == True:
+                    intento += 1
+                    Api = True
+                    break;
+                    print("la reserva se ha realizado correctamente en el intento " + str(intento))
+                intento += 1
+            print("No se ha podido realizar la reserva, se ha intentado " + str(intento) + " veces.")
+            if Api == False:
                 return False
         return True
     
@@ -59,16 +73,3 @@ class Flights_list:
         else:
             print("El pago se ha realizado correctamente")
             return True
-        
-    def confirmar_reserva(self,usuario,api_Skyscanner):
-        confirmar_reserva = api_Skyscanner.confirm_reserve(usuario,self.listVuelos)
-        if confirmar_reserva == True:
-            print("La reserva de los vuelos se ha realizado correctamente")
-        intentos_confirmar_reserva=1    
-        while confirmar_reserva == False:
-            confirmar_reserva = api_Skyscanner.confirm_reserve(usuario,self.listVuelos)
-            intentos_confirmar_reserva =+ 1 
-            if intentos_confirmar_reserva == 3:
-                print("Ha habido un problema durante el proceso de confirmación de la reserva y no se le ha efectuado ningún cargo.")
-                print("Intentelo mas tarde.")
-                return 0
