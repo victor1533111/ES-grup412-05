@@ -7,6 +7,8 @@ import User
 import Bank
 import Hotels_list
 import Flights_list
+import Cars_List
+import Cars
 
 
 class TestPaymentV1(unittest.TestCase):
@@ -85,7 +87,34 @@ class TestPaymentV1(unittest.TestCase):
             bank_reply = payment.confirmar_Pago(usuario, MockBank)
             
             assert bank_reply == False, "The payment is accepted when it should be denied"
-            
+    
+    def test_Precio_User(self):
+        usuario = User.User("Ruben", "4712458T", "Calle Vic","645548572", "rubenjibo@gmail.com")
+        
+        numviajeros=5
+        precioVuelo=100
+        numhabitaciones=2
+        numdias1=2
+        numdias2=3
+        precioHabitacion1=30
+        precioHabitacion2=20        
+        cars = []
+        
+        lista_vuelos = Flights_list.Flights_list(None, usuario)
+        lista_vuelos.AñadirDestino("3214", "Valencia", "Madrid", numviajeros, precioVuelo, 0)    
+        lista_vuelos.AñadirDestino("2323", "Madrid", "Sevilla", numviajeros, precioVuelo, 1)    
+        
+        lista_hoteles = Hotels_list.Hotels_list(None)
+        lista_hoteles.AñadirHotel("1000", "Cristian", numviajeros, numhabitaciones, numdias1, precioHabitacion1, 0)    
+        lista_hoteles.AñadirHotel("2000", "Cristian", numviajeros, numhabitaciones, numdias2, precioHabitacion2, 1)
+                
+        cars.append(Cars.Cars(123,"Seat",50,"GranVia",numdias1))
+        cars.append(Cars.Cars(777,"Honda",25,"Calle illo",numdias2))
+        lista_Cars=Cars_List.Cars_List(cars) 
+        
+        usuario.trip(numviajeros, "Valencia", lista_vuelos, lista_hoteles, lista_Cars, "1/1/2021", "5/1/2021")
+        
+        
 
 if __name__ == "__main__":
     unittest.main()

@@ -26,8 +26,6 @@ class Hotels_list:
             precio_T += hotel.precio_Total
         return precio_T
     
-    def cancelar_cargo(self):
-        print("Se cancela el cargo debido a que no se ha podido realizar la reserva.")
     
     def AñadirHotel(self, codigo, nombre, num_huespedes, num_habitacions, duracion_reserva, precio, posicion_hotel):
         hotel = Hotels.Hotels(codigo, nombre, num_huespedes, num_habitacions, duracion_reserva, precio)
