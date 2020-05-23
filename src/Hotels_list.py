@@ -35,3 +35,17 @@ class Hotels_list:
     def BorrarHotel(self, posicion_hotel):
         self.listHotels.pop(posicion_hotel)
         pass
+    
+    def confirmar_reserva(self,usuario,api_Booking,lista_hoteles):
+        reserva_hotel = api_Booking.confirm_reserve(usuario,lista_hoteles)
+        if reserva_hotel == True:
+            print("La reserva de los hoteles se ha realizado correctamente")
+        intentos_reserva_hoteles=1
+        while reserva_hotel == False:
+            reserva_hotel = api_Booking.confirm_reserve(usuario,lista_hoteles)
+            intentos_reserva_hoteles =+ 1 
+            if intentos_reserva_hoteles == 3:
+                print("Ha habido un problema durante el proceso de confirmación de la reserva y no se le ha efectuado ningún cargo.")
+                print("Intentelo mas tarde.")
+                return 0 
+        return True

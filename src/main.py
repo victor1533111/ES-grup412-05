@@ -7,10 +7,15 @@ import Flights
 import Flights_list
 import Cars_List
 import Hotels_list
+import Skyscanner
+import Rentalcars
+import Booking
 def main():
 
     
-    
+    api_Skyscanner = Skyscanner.Skyscanner()
+    api_Booking = Booking.Booking()
+    api_Rentalcars=Rentalcars.Rentalcars()
     datoscorrectos = False
     print("Deseas realizar el pago de la reserva ? S/N")
     respuesta = "S"
@@ -78,7 +83,7 @@ def main():
             titular = "Daniel Gutierrez Batista"
             print("Numero de la tarjeta de credito:")
             num_tarjeta = "4332 2555 6777 8989"
-            print("Codigo de seguridad de la tarjeta de credit:.")
+            print("Codigo de seguridad de la tarjeta de credit:")
             codigo_seguridad = "323"
             datos_pago = PaymentData.PaymentData(titular,num_tarjeta,codigo_seguridad,metodo_pago,str(precio))
             validar_datos_tarjeta = datos_pago.validar_datos()
@@ -89,11 +94,15 @@ def main():
                 errores_pago=datos_pago.confirmar_Pago(usuario,banco)
                 if errores_pago == False:
                     validar_datos_tarjeta = False
-            
-    
+  
+         
+    lista_vuelos.confirmar_reserva(usuario,lista_vuelos,api_Skyscanner)
+    if lista_cars.listcars != None:
+        lista_cars.confirmar_reserva(usuario,api_Rentalcars)
+    if lista_hoteles.listHotels != None:
+        lista_hoteles.confirmar_reserva(usuario,api_Rentalcars,lista_hoteles)
         
-    
-    
+     
 
 
      
