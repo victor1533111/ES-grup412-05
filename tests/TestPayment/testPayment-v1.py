@@ -48,7 +48,9 @@ class TestPaymentV1(unittest.TestCase):
             payment = PaymentData.PaymentData("Pepe", "4323 1234 5478 9123", "123", "VISA", "321")
             bank_reply = payment.Gestionar_Errores_Pago(usuario, MockBank)
             assert bank_reply == False, "The payment is accepted when it should be denied"
-        
+    
+    '''Dado un viaje con múltiples destinos y más de un viajero, cuando se produce un
+    error al realizar el pago, se reintenta realizar el pago'''
 
 if __name__ == "__main__":
     unittest.main()

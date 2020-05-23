@@ -30,15 +30,16 @@ class PaymentData:
     
         return True
     
-    def Gestionar_Errores_Pago(self, usuario: User, banco: Bank):
-        
-        reply = banco.do_payment(usuario,self)
-        
-        if reply == False:
-            print("No se ha podido realizar el pago")
-            return False
-        else:
-            print("El pago se ha realizado correctamente")
-            return True
+    def confirmar_Pago(self, usuario: User, banco: Bank):
+        # Si retorna Falso reintenta el pago 3 veces
+        intento = 0
+        while(intento > 3):
+            reply = banco.do_payment(usuario,self)
+            if reply == False:
+                print("No se ha podido realizar el pago en el intento " + str(intento))
+            else:
+                print("El pago se ha realizado correctamente")
+                return True
+        return False
         
    
