@@ -31,15 +31,20 @@ class PaymentData:
         return True
     
     def confirmar_Pago(self, usuario: User, banco: Bank):
-        # Si retorna Falso reintenta el pago 3 veces
-        intento = 0
-        while(intento > 3):
+        # Retorna Falso reintenta el pago 3 veces y todas son False
+        intento = 0; bankReplies=[]
+        while(intento < 3):
             reply = banco.do_payment(usuario,self)
-            if reply == False:
-                print("No se ha podido realizar el pago en el intento " + str(intento))
+            if type(reply) != list:
+                bankReplies = reply
             else:
-                print("El pago se ha realizado correctamente")
+                bankReplies = reply[intento]
+            if bankReplies == True:
+                intento += 1
+                print("El pago se ha realizado correctamente en el intento " + str(intento))
                 return True
+            intento += 1
+        print("No se ha podido realizar el pago, se ha intentado " + str(intento) + " veces.")
         return False
         
    

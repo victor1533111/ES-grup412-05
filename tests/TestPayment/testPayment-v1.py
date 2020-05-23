@@ -59,7 +59,7 @@ class TestPaymentV1(unittest.TestCase):
             usuario = User.User("Ruben", "4712458T", "Calle Vic","645548572", "rubenjibo@gmail.com")
             precioT = 350
             payment = PaymentData.PaymentData("Pepe", "4323 1234 5478 9123", "123", "VISA", str(precioT))
-            bank_reply = payment.confirmar_Pago_con_Reintento(usuario, MockBank)
+            bank_reply = payment.confirmar_Pago(usuario, MockBank)
             assert bank_reply == True, "The payment is accepted when it should be denied"
     
     '''Dado un viaje con múltiples destinos y más de un viajero, cuando se produce un
@@ -70,7 +70,7 @@ class TestPaymentV1(unittest.TestCase):
             usuario = User.User("Ruben", "4712458T", "Calle Vic","645548572", "rubenjibo@gmail.com")
             precioT = 350
             payment = PaymentData.PaymentData("Pepe", "4323 1234 5478 9123", "123", "VISA", str(precioT))
-            bank_reply = payment.confirmar_Pago_con_Reintento(usuario, MockBank)
+            bank_reply = payment.confirmar_Pago(usuario, MockBank)
             
             assert bank_reply == True, "The payment is accepted when it should be denied"
             
@@ -82,7 +82,7 @@ class TestPaymentV1(unittest.TestCase):
             usuario = User.User("Ruben", "4712458T", "Calle Vic","645548572", "rubenjibo@gmail.com")
             precioT = 350
             payment = PaymentData.PaymentData("Pepe", "4323 1234 5478 9123", "123", "VISA", str(precioT))
-            bank_reply = payment.confirmar_Pago_con_Reintento(usuario, MockBank)
+            bank_reply = payment.confirmar_Pago(usuario, MockBank)
             
             assert bank_reply == False, "The payment is accepted when it should be denied"
             
