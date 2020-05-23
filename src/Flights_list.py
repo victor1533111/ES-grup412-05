@@ -60,13 +60,13 @@ class Flights_list:
             print("El pago se ha realizado correctamente")
             return True
         
-    def confirmar_reserva(self,usuario,lista_vuelos,api_Skyscanner):
-        confirmar_reserva = api_Skyscanner.confirm_reserve(usuario,lista_vuelos)
+    def confirmar_reserva(self,usuario,api_Skyscanner):
+        confirmar_reserva = api_Skyscanner.confirm_reserve(usuario,self.listVuelos)
         if confirmar_reserva == True:
             print("La reserva de los vuelos se ha realizado correctamente")
         intentos_confirmar_reserva=1    
         while confirmar_reserva == False:
-            confirmar_reserva = api_Skyscanner.confirm_reserve(usuario,lista_vuelos)
+            confirmar_reserva = api_Skyscanner.confirm_reserve(usuario,self.listVuelos)
             intentos_confirmar_reserva =+ 1 
             if intentos_confirmar_reserva == 3:
                 print("Ha habido un problema durante el proceso de confirmación de la reserva y no se le ha efectuado ningún cargo.")

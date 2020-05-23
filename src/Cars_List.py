@@ -37,12 +37,12 @@ class Cars_List:
         pass
     
     def confirmar_reserva(self,usuario,api_Rentalcars):
-        reserva_coches = api_Rentalcars.confirm_reserve(usuario,self)
+        reserva_coches = api_Rentalcars.confirm_reserve(usuario,self.listcars)
         if reserva_coches == True:
             print("La reserva de los coches se ha realizado correctamente")
         intentos_reserva_coches=1
         while reserva_coches == False:
-            reserva_coches = api_Rentalcars.confirm_reserve(usuario,self)
+            reserva_coches = api_Rentalcars.confirm_reserve(usuario,self.listcars)
             intentos_reserva_coches =+ 1 
             if intentos_reserva_coches == 3:
                 print("Ha habido un problema durante el proceso de confirmación de la reserva y no se le ha efectuado ningún cargo.")

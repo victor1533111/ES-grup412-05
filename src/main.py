@@ -96,11 +96,11 @@ def main():
                     validar_datos_tarjeta = False
   
          
-    lista_vuelos.confirmar_reserva(usuario,lista_vuelos,api_Skyscanner)
+    lista_vuelos.confirmar_reserva(usuario,api_Skyscanner)
     if lista_cars.listcars != None:
         lista_cars.confirmar_reserva(usuario,api_Rentalcars)
     if lista_hoteles.listHotels != None:
-        lista_hoteles.confirmar_reserva(usuario,api_Rentalcars,lista_hoteles)
+        lista_hoteles.confirmar_reserva(usuario,api_Rentalcars)
         
      
 
