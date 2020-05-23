@@ -114,7 +114,7 @@ class TestPaymentV1(unittest.TestCase):
         
         usuario.Trip(lista_vuelos, lista_hoteles, lista_Cars, "1/1/2021", "5/1/2021")
         
-        assert 1450 ==usuario.Precio_total
+        assert 1415 ==usuario.Precio_total
 
 if __name__ == "__main__":
     unittest.main()
