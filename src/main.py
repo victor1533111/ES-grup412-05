@@ -2,6 +2,7 @@ import User
 import PaymentData
 import Hotels
 import Bank
+import Cars
 def main():
 
     
@@ -21,7 +22,7 @@ def main():
             telefono = "628548332"
             print("Email:")
             email = "dani.guiterrez@uab.cat"
-            usuario = User(Nombre,DNI,direccion,telefono,email)
+            usuario = User.User(Nombre,DNI,direccion,telefono,email)
 
         print("Deseas continuar ? S/N")
         continuar = "S"
@@ -46,14 +47,16 @@ def main():
             num_tarjeta = "4332 2555 6777 8989"
             print("Codigo de seguridad de la tarjeta de credit:.")
             codigo_seguridad = "323"
-            datos_pago = PaymentData(titular,num_tarjeta,codigo_seguridad,metodo_pago,0)
+            datos_pago = PaymentData.PaymentData(titular,num_tarjeta,codigo_seguridad,metodo_pago,"200")
             validar_datos_tarjeta = datos_pago.validar_datos()
             if validar_datos_tarjeta == False:
                 print("Los datos para realiazar el pago introducidos son incorrectos o incompletos.")
-            banco = Bank()
-            errores_pago=datos_pago.Gestionar_Errores_Pago(usuario,banco)
-            if errores_pago == False:
-                print("No se ha podido realizar el pago.")
+            else:
+                banco = Bank.Bank()
+                errores_pago=datos_pago.confirmar_Pago(usuario,banco)
+                if errores_pago == False:
+                    validar_datos_tarjeta = False
+            
     
     
 
