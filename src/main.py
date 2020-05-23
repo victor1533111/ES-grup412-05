@@ -80,7 +80,7 @@ def main():
             num_tarjeta = "4332 2555 6777 8989"
             print("Codigo de seguridad de la tarjeta de credit:.")
             codigo_seguridad = "323"
-            datos_pago = PaymentData.PaymentData(titular,num_tarjeta,codigo_seguridad,metodo_pago,precio)
+            datos_pago = PaymentData.PaymentData(titular,num_tarjeta,codigo_seguridad,metodo_pago,str(precio))
             validar_datos_tarjeta = datos_pago.validar_datos()
             if validar_datos_tarjeta == False:
                 print("Los datos para realiazar el pago introducidos son incorrectos o incompletos.")
