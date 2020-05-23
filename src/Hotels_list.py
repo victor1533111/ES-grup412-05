@@ -45,7 +45,7 @@ class Hotels_list:
                     break;
                     print("La reserva se ha realizado correctamente en el intento " + str(intento))
                 intento += 1
-            print("No se ha podido realizar la reserva, se ha intentado " + str(intento) + " veces.")
             if Api == False:
                 return False
+        print("La reserva de Hoteles se ha realizado correctamente para los " + str(len(self.listHotels)) + " hoteles.")
         return True

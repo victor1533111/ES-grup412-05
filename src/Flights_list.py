@@ -58,9 +58,10 @@ class Flights_list:
                     break;
                     print("la reserva se ha realizado correctamente en el intento " + str(intento))
                 intento += 1
-            print("No se ha podido realizar la reserva, se ha intentado " + str(intento) + " veces.")
             if Api == False:
+                print("La reserva no se ha podido realizar en el intento " + str(intento))
                 return False
+        print("La reserva de Vuelos se ha realizado correctamente para los " + str(len(self.listVuelos)) + " vuelos.")
         return True
     
     def Gestionar_Errores_Pago(self, usuario: User, sky: Skyscanner):
