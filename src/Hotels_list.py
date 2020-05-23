@@ -28,16 +28,24 @@ class Hotels_list:
         self.listHotels.pop(posicion_hotel)
         pass
     
-    def confirmar_reserva(self,usuario,api_Booking):
-        reserva_hotel = api_Booking.confirm_reserve(usuario,self.listHotels)
-        if reserva_hotel == True:
-            print("La reserva de los hoteles se ha realizado correctamente")
-        intentos_reserva_hoteles=1
-        while reserva_hotel == False:
-            reserva_hotel = api_Booking.confirm_reserve(usuario,self.listHotels)
-            intentos_reserva_hoteles =+ 1 
-            if intentos_reserva_hoteles == 3:
-                print("Ha habido un problema durante el proceso de confirmación de la reserva y no se le ha efectuado ningún cargo.")
-                print("Intentelo mas tarde.")
-                return 0 
+    def confirmar_Todos(self, usuario: User, booking: Booking):
+        # Retorna Falso reintenta el pago 3 veces y todas son False
+        for hotel in self.listHotels:
+            intento = 0; ApiReplies=[]; Api = False
+            while(intento < 3):
+                bookAPI = booking
+                ret = bookAPI.confirm_reserve(usuario, bookAPI)
+                if type(ret) != list:
+                    ApiReplies = ret
+                else:
+                    ApiReplies = ret[intento]
+                if ApiReplies == True:
+                    intento += 1
+                    Api = True
+                    break;
+                    print("La reserva se ha realizado correctamente en el intento " + str(intento))
+                intento += 1
+            print("No se ha podido realizar la reserva, se ha intentado " + str(intento) + " veces.")
+            if Api == False:
+                return False
         return True
