@@ -2,6 +2,7 @@ import sys
 sys.path.append('../../src/')
 import Flights_list
 import Cars
+import Rentalcars
 
 class Cars_List:
 
@@ -36,16 +37,24 @@ class Cars_List:
                 self.calcular_precioTotal()
         pass
     
-    def confirmar_reserva(self,usuario,api_Rentalcars):
-        reserva_coches = api_Rentalcars.confirm_reserve(usuario,self.listcars)
-        if reserva_coches == True:
-            print("La reserva de los coches se ha realizado correctamente")
-        intentos_reserva_coches=1
-        while reserva_coches == False:
-            reserva_coches = api_Rentalcars.confirm_reserve(usuario,self.listcars)
-            intentos_reserva_coches =+ 1 
-            if intentos_reserva_coches == 3:
-                print("Ha habido un problema durante el proceso de confirmación de la reserva y no se le ha efectuado ningún cargo.")
-                print("Intentelo mas tarde.")
-                return 0
+    def confirmar_reserva(self,usuario,api_Rentalcars: Rentalcars):
+        # Retorna Falso reintenta el pago 3 veces y todas son False
+        for car in self.listcars:
+            intento = 0; ApiReplies=[]; Api = False
+            while(intento < 3):
+                rental = api_Rentalcars
+                ret = rental.confirm_reserve(usuario, rental)
+                if type(ret) != list:
+                    ApiReplies = ret
+                else:
+                    ApiReplies = ret[intento]
+                if ApiReplies == True:
+                    intento += 1
+                    Api = True
+                    break;
+                    print("la reserva se ha realizado correctamente en el intento " + str(intento))
+                intento += 1
+            print("No se ha podido realizar la reserva, se ha intentado " + str(intento) + " veces.")
+            if Api == False:
+                return False
         return True
