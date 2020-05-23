@@ -11,6 +11,7 @@ class Cars_List:
             return
         self.listcars = listcars
         pass
+    
     def calcular_precioTotal(self):
         precio_T = 0
         for car in self.listcars:
