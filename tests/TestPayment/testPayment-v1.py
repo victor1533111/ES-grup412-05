@@ -12,7 +12,7 @@ import Cars
 
 
 class TestPaymentV1(unittest.TestCase):
-    
+    """
     def test_valid_data(self):
         payment = PaymentData.PaymentData("Pepe", "4323 1234 5478 9123", "123", "VISA", "321")
         valid = PaymentData.PaymentData.validar_datos(payment)
@@ -87,7 +87,7 @@ class TestPaymentV1(unittest.TestCase):
             bank_reply = payment.confirmar_Pago(usuario, MockBank)
             
             assert bank_reply == False, "The payment is accepted when it should be denied"
-    
+    """
     def test_Precio_User(self):
         usuario = User.User("Ruben", "4712458T", "Calle Vic","645548572", "rubenjibo@gmail.com")
         
@@ -112,9 +112,9 @@ class TestPaymentV1(unittest.TestCase):
         cars.append(Cars.Cars(777,"Honda",25,"Calle illo",numdias2))
         lista_Cars=Cars_List.Cars_List(cars) 
         
-        usuario.trip(numviajeros, "Valencia", lista_vuelos, lista_hoteles, lista_Cars, "1/1/2021", "5/1/2021")
+        usuario.Trip(lista_vuelos, lista_hoteles, lista_Cars, "1/1/2021", "5/1/2021")
         
-        
+        assert 1450 ==usuario.Precio_total
 
 if __name__ == "__main__":
     unittest.main()
