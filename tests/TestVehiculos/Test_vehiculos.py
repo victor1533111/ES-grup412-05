@@ -45,7 +45,19 @@ class testCars(unittest.TestCase):
           lista_Cars.eliminar_vehiculo(lista_vuelos,ciudad,precio_por_dia,modelo , codigo, lugar_recogida,dias)
           assert lista_Cars.precio_coches == 0
           
-          
+      '''Dado un viaje con múltiples destinos y más de un viajero, cuando se confirma
+      correctamente la reserva de los vehículos, se reporta que la acción se ha
+      realizado correctamente'''
+
+      def test_reserva_vehiculos(self):
+             with mock.patch('Rentalcars.Rentalcars') as MockRental:
+            MockRental.confirm_reserve.return_value = True
+            usuario = User.User("Ruben", "4712458T", "Calle Vic","645548572", "rubenjibo@gmail.com")
+            rentalcars = Cars.Cars(123, "Seat", 20, "Calle Vic", "calle Valencia", 3)
+            rental_reply = rentalcars.confirmar_reserva_vehiculos_conerrores(usuario,rentalcars)
+            
+            assert rental_reply == True
+                
           
 if __name__ == "__main__":
     unittest.main()
