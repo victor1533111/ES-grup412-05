@@ -18,16 +18,19 @@ class testHotels(unittest.TestCase):
         numhabitaciones = 1
         numdias = 3
         
+        precioVuelo = 50
+        precioHabitacion = 15
+        
         lista_vuelos = Flights_list.Flights_list(None, usuario)
-        lista_vuelos.AñadirDestino("3214", "Valencia", "Madrid", numviajeros, 50, 0)    
-        lista_vuelos.AñadirDestino("2323", "Madrid", "Sevilla", numviajeros, 50, 1)
+        lista_vuelos.AñadirDestino("3214", "Valencia", "Madrid", numviajeros, precioVuelo, 0)    
+        lista_vuelos.AñadirDestino("2323", "Madrid", "Sevilla", numviajeros, precioVuelo, 1)
         
         lista_hoteles = Hotels_list.Hotels_list(None)
-        lista_hoteles.AñadirHotel("1000", "Cristian", numviajeros, numhabitaciones, numdias, 15, 0)    
-        lista_hoteles.AñadirHotel("2000", "Cristian", numviajeros, numhabitaciones, numdias, 15, 1)
+        lista_hoteles.AñadirHotel("1000", "Cristian", numviajeros, numhabitaciones, numdias, precioHabitacion, 0)    
+        lista_hoteles.AñadirHotel("2000", "Cristian", numviajeros, numhabitaciones, numdias, precioHabitacion, 1)
         
-        precio_Vuelos = (50 * numviajeros) * len(lista_vuelos.listVuelos)
-        precio_Hoteles = (15 * numhabitaciones * numdias) * len(lista_hoteles.listHotels)
+        precio_Vuelos = (precioVuelo * numviajeros) * len(lista_vuelos.listVuelos)
+        precio_Hoteles = (precioHabitacion * numhabitaciones * numdias) * len(lista_hoteles.listHotels)
         
         assert (lista_vuelos.calcular_precioTotal() + lista_hoteles.calcular_precioTotal()) == (precio_Vuelos + precio_Hoteles)
     
@@ -37,21 +40,24 @@ class testHotels(unittest.TestCase):
         numhabitaciones = 1
         numdias = 3
         
+        precioVuelo = 50
+        precioHabitacion = 15
+        
         lista_vuelos = Flights_list.Flights_list(None, usuario)
-        lista_vuelos.AñadirDestino("3214", "Valencia", "Madrid", numviajeros, 50, 0)    
-        lista_vuelos.AñadirDestino("2323", "Madrid", "Sevilla", numviajeros, 50, 1)
+        lista_vuelos.AñadirDestino("3214", "Valencia", "Madrid", numviajeros, precioVuelo, 0)    
+        lista_vuelos.AñadirDestino("2323", "Madrid", "Sevilla", numviajeros, precioVuelo, 1)
         
         lista_hoteles = Hotels_list.Hotels_list(None)
-        lista_hoteles.AñadirHotel("1000", "Cristian", numviajeros, numhabitaciones, numdias, 15, 0)    
-        lista_hoteles.AñadirHotel("2000", "Cristian", numviajeros, numhabitaciones, numdias, 15, 1)
+        lista_hoteles.AñadirHotel("1000", "Cristian", numviajeros, numhabitaciones, numdias, precioHabitacion, 0)    
+        lista_hoteles.AñadirHotel("2000", "Cristian", numviajeros, numhabitaciones, numdias, precioHabitacion, 1)
         
         lista_hoteles.BorrarHotel(1)
         
-        precio_Vuelos = (50 * numviajeros) * len(lista_vuelos.listVuelos)
-        precio_Hoteles = (15 * numhabitaciones * numdias) * len(lista_hoteles.listHotels)
+        precio_Vuelos = (precioVuelo * numviajeros) * len(lista_vuelos.listVuelos)
+        precio_Hoteles = (precioHabitacion * numhabitaciones * numdias) * len(lista_hoteles.listHotels)
         
         assert (lista_vuelos.calcular_precioTotal() + lista_hoteles.calcular_precioTotal()) == (precio_Vuelos + precio_Hoteles)
-        
+    
 
 if __name__ == "__main__":
     unittest.main()
